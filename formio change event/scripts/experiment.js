@@ -31,19 +31,15 @@ $(document).ready(function () {
                 //    jsonElement.appendChild(document.createTextNode(JSON.stringify(schema, null, 4)));
                 //    Formio.createForm(formElement, schema).then(onForm);
 
-                console.log("Save...");
+                console.log("Saveeeeeeeee");
 
-                    instance.on("change",function(){
-                        console.log("Change Save");
-                    })
+
+
             });
 
             instance.on('editComponent', function (event) {
                 console.log('editComponent', event);
-                instance.on("change",function(){
-                    console.log("Change editComponent ");
-                  //  console.log("instance",instance);
-                })               
+            
             });
 
 
@@ -51,37 +47,80 @@ $(document).ready(function () {
                 //    jsonElement.innerHTML = '';
                 //    jsonElement.appendChild(document.createTextNode(JSON.stringify(instance.schema, null, 4)));
                 console.log("Update Component");
-                instance.on("change",function(){
-                    console.log("Change Update ");
-                  //  console.log("instance",instance);
-                })
+                // instance.on("change",function(){
+                //     console.log("Change Funtcion XXXXX ");
+                //   //  console.log("instance",instance);
+                // })   
+
             });
 
-            instance.on('deleteComponent', function (event) {
-                //    jsonElement.innerHTML = '';
-                //    jsonElement.appendChild(document.createTextNode(JSON.stringify(instance.schema, null, 4)));
-                console.log("delete...");
-                instance.on("change", function () {
-                    console.log("Change Delete"); 
-                    //  console.log("instance",instance);
-                })
-            });
+            // instance.on('deleteComponent', function (event) {
+            //     //    jsonElement.innerHTML = '';
+            //     //    jsonElement.appendChild(document.createTextNode(JSON.stringify(instance.schema, null, 4)));
+            //     console.log("delete...");
+            //     instance.on("change", function () {
+            //         console.log("Change Delete"); 
+            //         //  console.log("instance",instance);
+            //     })
+            // });
+
+
+
+            instance.on("change",function(){
+                console.log("Change Jaaaa");
+              //  console.log("instance",instance);
+            })   
+
+            // builder.setForm(instance.scheme);
+
+
+
+
+
+            // builder.instance.on('deleteComponent',function(){
+
+            //     console.log("Set formmmmmm");
+                
+            // })
+
+
+
+
+
+            // builder.on('change',function(){
+
+            //     console.log("Set formmmmmm Change");
+                
+            // })
 
             //  Formio.createForm(formElement, instance.schema).then(onForm);
-            instance.on("componentChange", function (event) {
-                console.log("Change Change Change");
+            // instance.on("componentChange", function (event) {
+            //     console.log("Change Change Change");
                   
-                //  console.log("instance",instance);
-            })
+            //     //  console.log("instance",instance);
+            // })
+
+
 
 
 
             $('#editschema').click(function () {
 
                 console.log("Show Instance ",instance);
-                // console.log("Builder",builder);
+                console.log("Builder",builder);
                 // console.log("Display ",display);
                 // console.log("form 5555 ",instance.form);
+            })
+
+            $('#setformx').click(function(){
+
+                console.log("show setform x");
+                instance.setForm(experiment);
+                instance.on("change",function(){
+                    console.log("Super Change!!!");
+                })
+                
+
             })
 
             
