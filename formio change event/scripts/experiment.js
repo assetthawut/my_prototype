@@ -24,15 +24,18 @@ $(document).ready(function () {
         builder.setDisplay(display).then(function (instance) {
             //  var jsonElement = document.getElementById('json');
             //  var formElement = document.getElementById('formio');
+         
+
+
             instance.on('saveComponent', function (event) {
                 //    var schema = instance.schema;
                 //    jsonElement.innerHTML = '';
                 //    formElement.innerHTML = '';
                 //    jsonElement.appendChild(document.createTextNode(JSON.stringify(schema, null, 4)));
                 //    Formio.createForm(formElement, schema).then(onForm);
-
+                
                 console.log("Saveeeeeeeee");
-
+               
 
 
             });
@@ -41,6 +44,8 @@ $(document).ready(function () {
                 console.log('editComponent', event);
             
             });
+
+
 
 
             instance.on('updateComponent', function (event) {
@@ -54,6 +59,31 @@ $(document).ready(function () {
 
             });
 
+            instance.on('render',function(event){
+
+                // console.log("Render !!! ");
+                // console.log("event",event);
+                // console.log("instance schema ",instance.schema);
+
+            })
+
+            instance.on("copyComponent",function(){
+
+
+                    console.log("COPPPPPPPY");
+            })
+
+
+            // setTimeout(function(){ 
+            //     instance.on("change",function(event){
+
+            //         console.log(" ----- Chang event run  ----");
+            //         // console.log("---",instance.schema);
+    
+            //     })
+            
+            // }, 2000);
+
             // instance.on('deleteComponent', function (event) {
             //     //    jsonElement.innerHTML = '';
             //     //    jsonElement.appendChild(document.createTextNode(JSON.stringify(instance.schema, null, 4)));
@@ -64,12 +94,7 @@ $(document).ready(function () {
             //     })
             // });
 
-
-
-            instance.on("change",function(){
-                console.log("Change Jaaaa");
-              //  console.log("instance",instance);
-            })   
+          
 
             // builder.setForm(instance.scheme);
 
@@ -99,7 +124,14 @@ $(document).ready(function () {
                   
             //     //  console.log("instance",instance);
             // })
-
+// // ---------------------------------
+// instance.on("change",function(){
+//     console.log("Change Event in in ");
+// })
+// instance.on("setForm",function(){
+//     console.log("Change Event in in in in X ");
+// })
+// ---------------------------------
 
 
 
@@ -115,12 +147,36 @@ $(document).ready(function () {
             $('#setformx').click(function(){
 
                 console.log("show setform x");
-                instance.setForm(experiment);
-                instance.on("change",function(){
-                    console.log("Super Change!!!");
-                })
-                
+                var sample = experiment;
+                builder.instance.setForm(sample);
+                // console.log("sample",sample);
+                console.log("instance",instance);
+            
+            })
 
+            $('#setform2').click(function(){
+
+                // builder.instance.setForm(experiment2);
+                // builder.instance.on("change",function(){
+                //      console.log("Change Event change from click");
+                //  })
+                // instance.on("setForm",function(){
+                //     console.log("Change Event setForm");
+                // })
+
+                builder.instance.setForm(experiment2);
+            
+            })
+
+            $('#showschema').click(function(){
+
+                console.log("show schema",builder.instance.schema.components);
+                
+                // builder.instance.on("change",function(){
+                //      console.log("Change Event change from click");
+                //  })                
+                
+                builder.render();
             })
 
             
@@ -138,7 +194,20 @@ $(document).ready(function () {
 
     setDisplay('form');
     console.log("ready!");
+
+    console.log("Builder",builder);
+    
+
+    // builder.instance.setForm(experiment2)
+    // builder.instance.on("change",function(event){
+    //         console.log("Success");
+    //         console.log(event);
+    //     })
 });
+
+
+
+
 
 
 

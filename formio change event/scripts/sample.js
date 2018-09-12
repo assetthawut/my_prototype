@@ -6,11 +6,11 @@ experiment = {
         {
             "autofocus": false,
             "input": true,
-            "label": "submit",
+            "label": "Test button",
             "tableView": false,
             "key": "submit",
             "size": "xs",
-            "leftIcon": "glyphicon glyphicon-remove-circle",
+            "leftIcon": "e",
             "rightIcon": "",
             "block": false,
             "action": "custom",
@@ -25,7 +25,7 @@ experiment = {
             },
             "properties": {},
             "customClass": "",
-            "hideLabel": true,
+            "hideLabel": false,
             "custom": "console.log(\"Test\");"
         }
     ],
