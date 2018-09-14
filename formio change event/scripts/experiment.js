@@ -25,7 +25,10 @@ $(document).ready(function () {
             //  var jsonElement = document.getElementById('json');
             //  var formElement = document.getElementById('formio');
          
+            instance.on('formload',function(){
 
+                console.log("form load");
+            })
 
             instance.on('saveComponent', function (event) {
                 //    var schema = instance.schema;
@@ -35,6 +38,11 @@ $(document).ready(function () {
                 //    Formio.createForm(formElement, schema).then(onForm);
                 
                 console.log("Saveeeeeeeee");
+                console.log("onChange",onchange);
+                instance.on('update',function(){
+
+                    console.log("------------------------> 1234 update")
+                })
                
 
 
@@ -44,6 +52,36 @@ $(document).ready(function () {
                 console.log('editComponent', event);
             
             });
+
+            instance.on('update',function(){
+
+                console.log("------------------------> 1234 update")
+            })
+
+            instance.on('onChange',function(){
+
+                console.log("On ->>>> Change")
+
+
+            })
+
+            instance.on('nextPage',function(){
+
+                console.log("nextPage 123456");
+            })
+
+            instance.on('refreshData',function(){
+
+                console.log("Refresh Data !!");
+
+            });
+
+
+            instance.on('editGridAddRow',function(){
+
+
+                console.log(" editGridAddRow ")
+            })
 
 
 
@@ -61,9 +99,9 @@ $(document).ready(function () {
 
             instance.on('render',function(event){
 
-                // console.log("Render !!! ");
-                // console.log("event",event);
-                // console.log("instance schema ",instance.schema);
+                 console.log("Render !!! ");
+                //  console.log("event",event);
+                 console.log("instance schema ",instance.schema);
 
             })
 
@@ -72,6 +110,19 @@ $(document).ready(function () {
 
                     console.log("COPPPPPPPY");
             })
+
+
+            instance.on("componentCopy",function(){
+
+                    console.log(" COCOPY ");
+            })
+
+            instance.on('componentChange',function(){
+
+                console.log("-TEST componentChange-");
+            })
+
+
 
 
             // setTimeout(function(){ 
@@ -176,8 +227,18 @@ $(document).ready(function () {
                 //      console.log("Change Event change from click");
                 //  })                
                 
-                builder.render();
+                // builder.render();
+
             })
+
+
+
+        $('#testclass').click(function(){
+
+            testclass = new Rectangle();
+            console.log(" testclass ",testclass.sayName());
+
+        })
 
             
 
@@ -203,6 +264,9 @@ $(document).ready(function () {
     //         console.log("Success");
     //         console.log(event);
     //     })
+    builder.instance.on("copyComponent",function(){
+         console.log("COCOPY");
+    })
 });
 
 
