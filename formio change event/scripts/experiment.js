@@ -286,6 +286,11 @@ $(document).ready(function () {
 
         })
 
+        $('#getkey').click(function(){
+
+            console.log("key: ",dict.key());
+        })
+
             
 
 
@@ -314,6 +319,43 @@ $(document).ready(function () {
     builder.instance.on("copyComponent",function(){
          console.log("COCOPY");
     })
+
+
+    var dict = new dictionaryx();
+
+    $('#createdict').click(function(){
+
+        console.log(" === createdict ===");
+        
+        dict.set('a','Rooney');
+        dict.set('b','Beckham');
+
+        console.log('dict',dict);
+        
+
+        
+
+    })
+
+    $('#showvalue').click(function(){
+
+        console.log(" === showvalue ===");
+        console.log(dict.values());
+        console.log("GET =:=")
+        console.log(dict.get('b'))
+
+        console.log("Check has: ",dict.has('b'));
+
+    })
+
+    $('#deletedict').click(function(){
+
+        console.log("Delete Dict");
+        dict.delete('a');
+
+    })
+
+
 });
 
 

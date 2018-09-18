@@ -1,27 +1,29 @@
-class dictionary {
+class dictionaryx {
+    constructor() {
+        // Check that (year, month, day) is a valid date
+        // ...
+    
+        // If it is, use it to initialize "this" date
+        this.items = {};
 
-    items;
-
-    constructor(){
-
-    }
+      }
 
 
     has(key){
         
-        return key in items;
+        return key in this.items;
     }
 
     set(key,value){
 
-        items[key] = value;
+        this.items[key] = value;
     }    
 
     delete(key){
 
         if(this.has(key)){
 
-            delete items[key];
+            delete this.items[key];
             return true;
         }
 
@@ -30,16 +32,16 @@ class dictionary {
 
     get(key){
 
-        return this.has(key)? items[key] : undefined;
+        return this.has(key)? this.items[key] : undefined;
 
     }
 
     values(){
 
         var values = [];
-        for( var k in items){
+        for( var k in this.items){
             if(this.has(k)){
-                values.push(items[k])
+                values.push(this.items[k])
             }
         }
 
@@ -48,12 +50,12 @@ class dictionary {
 
     key(){
 
-        return Object.keys(items);
+        return Object.keys(this.items);
     }
 
-    getItems = function(){
+    getItems(){
 
-        return items;
+        return this.items;
     }
 
 }
