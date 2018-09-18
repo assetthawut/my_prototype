@@ -1,3 +1,5 @@
+
+
 // var subJSON = document.getElementById('subjson');
 $(document).ready(function () {
     var builder = new Formio.FormBuilder(document.getElementById("builder"), {
@@ -24,10 +26,9 @@ $(document).ready(function () {
         builder.setDisplay(display).then(function (instance) {
             //  var jsonElement = document.getElementById('json');
             //  var formElement = document.getElementById('formio');
-         
+            
             instance.on('formload',function(){
-
-                console.log("form load");
+                //console.log("form load");
             })
 
             instance.on('saveComponent', function (event) {
@@ -38,10 +39,14 @@ $(document).ready(function () {
                 //    Formio.createForm(formElement, schema).then(onForm);
                 
                 console.log("Saveeeeeeeee");
-                console.log("onChange",onchange);
-                instance.on('update',function(){
+               // console.log("onChange",onchange);
+                // instance.on('update',function(){
 
-                    console.log("------------------------> 1234 update")
+                //    // console.log("------------------------> 1234 update")
+                // })
+
+                instance.on('change',function(){
+                    console.log("---->save<-----");
                 })
                
 
@@ -49,13 +54,13 @@ $(document).ready(function () {
             });
 
             instance.on('editComponent', function (event) {
-                console.log('editComponent', event);
+              //  console.log('editComponent', event);
             
             });
 
             instance.on('update',function(){
 
-                console.log("------------------------> 1234 update")
+              //  console.log("------------------------> 1234 update")
             })
 
             instance.on('onChange',function(){
@@ -67,12 +72,12 @@ $(document).ready(function () {
 
             instance.on('nextPage',function(){
 
-                console.log("nextPage 123456");
+             //   console.log("nextPage 123456");
             })
 
             instance.on('refreshData',function(){
 
-                console.log("Refresh Data !!");
+             //   console.log("Refresh Data !!");
 
             });
 
@@ -80,7 +85,7 @@ $(document).ready(function () {
             instance.on('editGridAddRow',function(){
 
 
-                console.log(" editGridAddRow ")
+              //  console.log(" editGridAddRow ")
             })
 
 
@@ -89,7 +94,7 @@ $(document).ready(function () {
             instance.on('updateComponent', function (event) {
                 //    jsonElement.innerHTML = '';
                 //    jsonElement.appendChild(document.createTextNode(JSON.stringify(instance.schema, null, 4)));
-                console.log("Update Component");
+               // console.log("Update Component");
                 // instance.on("change",function(){
                 //     console.log("Change Funtcion XXXXX ");
                 //   //  console.log("instance",instance);
@@ -97,30 +102,52 @@ $(document).ready(function () {
 
             });
 
-            instance.on('render',function(event){
+            // instance.on('render',function(event){
 
-                 console.log("Render !!! ");
-                //  console.log("event",event);
-                 console.log("instance schema ",instance.schema);
+            //    //   console.log("Render !!! ");
+            //    //   console.log("event",event);
+            //    //   console.log("instance schema ",instance.schema);
+            //   console.log("Render!");
 
-            })
+            // })
 
             instance.on("copyComponent",function(){
 
 
-                    console.log("COPPPPPPPY");
+                  //  console.log("COPPPPPPPY");
             })
 
 
             instance.on("componentCopy",function(){
 
-                    console.log(" COCOPY ");
+                   //console.log(" COCOPY ");
             })
 
             instance.on('componentChange',function(){
 
-                console.log("-TEST componentChange-");
+             //   console.log("-TEST componentChange-");
             })
+
+            instance.on('pasteComponent',function(){
+
+                console.log("-- paste -- ");
+
+            })
+
+
+            instance.on('componentPaste',function(){
+
+                console.log("-- paste -- ");
+
+            })            
+
+
+            instance.on('change',function(){
+
+                console.log("--- CHANGE X ---");
+            })
+
+
 
 
 
@@ -227,7 +254,7 @@ $(document).ready(function () {
                 //      console.log("Change Event change from click");
                 //  })                
                 
-                // builder.render();
+                builder.render();
 
             })
 
@@ -235,8 +262,27 @@ $(document).ready(function () {
 
         $('#testclass').click(function(){
 
-            testclass = new Rectangle();
-            console.log(" testclass ",testclass.sayName());
+            //  testclass = new Rectangle(100,100);
+            //  testclass.sayName();
+            //  console.log(testclass.area)
+            //  console.log(" testclass ",testclass.sayName());
+
+            // extendclassx = new Square(9,100);
+            // extendclassx.sayName();
+            // console.log(extendclassx.area);
+            // extendclassx.sayHello();
+            // console.log("#testclass builder",builder);
+            demoWebformBuilderx = new sampleclass(builder);
+
+
+        })
+
+        $('#formrender').click(function(){
+
+
+            console.log("Form-Render");
+            builder.render();
+
 
         })
 
@@ -264,6 +310,7 @@ $(document).ready(function () {
     //         console.log("Success");
     //         console.log(event);
     //     })
+
     builder.instance.on("copyComponent",function(){
          console.log("COCOPY");
     })
