@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+        <link rel="import" href="inc.html">
+</head>
+
+<body>
+
+    <div id="container"></div>
+
+    <script>
+        var link = document.querySelector('link[rel="import"]');
+
+        
+        // Clone the <template> in the import.
+        var template = link.import.querySelector('html');
+        var clone = document.importNode(template, true);
+
+        console.log('link',link);
+        console.log('template',template);
+        // console.log('clone',clone);
+
+        document.querySelector('#container').appendChild(clone);
+    </script>
+</body>
+
+</html>
