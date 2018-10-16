@@ -1,0 +1,198 @@
+<!DOCtype html>
+<html>
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="./scripts/FileSaver.min.js"></script>
+    
+</head>
+
+<body>
+    <tr>
+        <td class="float-right">
+            <label class="col-form-label">Load HTML (.html) file:
+                <label>
+        </td>
+        <td>
+            <button class="btn btn-primary" onclick="javascript:document.getElementById('loadHtml').click();">Select</button>
+            <input type='file' accept=".html,.json,.json.js,application/json, application/javascript,text/html" id="loadHtml"
+                style="display:none;" value="Load" onchange="setFileName(this,'setFileNameHtml')" 
+                directory />
+            <label class="col-form-label" id="setFileNameHtml" style="width: 300px;"></label>
+        </td>
+
+        <td>
+            <button class="btn btn-primary" id="openButtonHtml">Open</button>
+        </td>
+
+        <!-- <td>
+                        <button  class="btn btn-danger" id="resetButtonCFB">Reset Configuration</button>
+                    </td>       -->
+    </tr>
+    <script>
+
+        function setFileName(oFileInput, sTargetID) {
+            if (oFileInput.value != '') {
+                document.getElementById(sTargetID).innerHTML = oFileInput.files[0].name;
+            } else {
+                document.getElementById(sTargetID).innerHTML = '';
+            }
+        };
+
+
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        console.log("ELSE");
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        console.log('url : ',url);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+$(document).ready(function () {
+
+
+
+
+            $('#openButtonHtml').click(function () {
+                
+
+                localstorage.root.getFile("info.txt", {create: true});
+
+
+
+            //      window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024,['joejoe']);
+            //      console.log("window.TEMPORARY",window.TEMPORARY);
+            //      download('test','1234','application/json;charset=utf-8');
+
+
+        return 
+
+        var blob = new Blob([{a:1}] ,{ type: 'application/json;charset=utf-8' });
+        saveAs(blob,"test.txt");
+        console.log(blob);
+
+        debugger;
+                // --------------------------------------------------- // 
+
+                // var file = document.getElementById("loadHtml").files[0]; 
+                var file = document.getElementById("loadHtml").files[0];
+
+                var tmppath = URL.createObjectURL(file);
+                
+                console.log("tmppath",tmppath);
+                //  debugger
+
+                var path = (window.URL || window.webkitURL).createObjectURL(file);
+                console.log('path', path);
+                //  console.log('window.URL ',window.URL);
+                // debugger
+
+
+                console.log("file xyz > ", file.mozFullPath);
+
+                console.log("### ", document.getElementById("loadHtml").files);
+                console.log("*** ", document.getElementById("loadHtml"));
+                // console.log("window !!! ",window);
+
+
+                var pathx = $("#loadHtml").attr("src");
+
+                console.log(pathx);
+                console.log("===> window.file ===> ", window.file);
+                console.log("===> window.FileReader ===> ", window.FileReader);
+                console.log("===> window.FileList ===> ", window.FileList);
+                console.log("*** window.Blob *** ", window.Blob);
+
+
+
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                // console.log("Reader => ",reader);
+                reader.onload = function () {
+                    var fileContent = reader.result;
+                    //  console.log("sdfsdfsdfsdfsdf >>> ",fileContent);
+                }
+
+                return;
+                debugger
+
+                if (file) {
+
+                    var reader = new FileReader();
+                    reader.readAsText(file, "UTF-8");
+                    reader.onload = function (evt) {
+                        /*
+                            get data form file and send to cutTemplateString for cut string (varible name and semicolon).
+                        */
+                        templateJson = cutCustomFormNBuilderString(evt.target.result);
+                        templateJson = templateJson;
+                        // remove space after end string
+                        templateJson = templateJson.replace(/\'/g, '"');
+                        // insert double quote to key and value if have ignore. 
+                        templateJson = templateJson.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2":');
+
+                        try {
+                            customFormBuilder = JSON.parse(templateJson);
+                        } catch (error) {
+                            $(".warnmsgConfiguration").replaceWith(
+                                '<div class="alert alert-warning alert-dismissable configwarning warnmsgConfiguration"><a href="#" class="close" data-dismiss="alert" aria-label="close" style="position: initial;">&#215;</a><strong>Warning !</strong> The Json template file has an incorect format.</div></div>'
+                            )
+                            notificationTimeOut['warnmsgConfiguration'] = setTimeout(function () {
+                                $(".configwarning").replaceWith('<div class="warnmsgConfiguration"></div>');
+                            }, 3000)
+                            return;
+                        }
+
+
+                        /*
+                            save generated json(custom form builder) to local storage 
+                            if user close browser tab this data will delete.
+                        */
+                        if (!isIEBrowser() && !/Edge\/12./i.test(navigator.userAgent)) {
+                            sessionStorage.setItem('customFormBuilder', JSON.stringify(customFormBuilder));
+                            customObjSession = sessionStorage.getItem('customFormBuilder');
+                        } else {
+                            customObjSession = JSON.stringify(customFormBuilder);
+                        }
+
+                        // reload web page.
+                        location.reload();
+                    }
+                } else {
+
+                    $(".warnmsgConfiguration").replaceWith(
+                        '<div class="alert alert-warning alert-dismissable configwarning warnmsgConfiguration"><a href="#" class="close" data-dismiss="alert" aria-label="close" style="position: initial;">&#215;</a><strong>Warning !</strong> The Json template file has an incorect format.</div></div>'
+                    )
+                    notificationTimeOut['warnmsgConfiguration'] = setTimeout(function () {
+                        $(".configwarning").replaceWith('<div class="warnmsgConfiguration"></div>');
+                    }, 3000)
+
+                }
+
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>
