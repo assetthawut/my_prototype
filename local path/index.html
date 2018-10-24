@@ -34,7 +34,31 @@
                         <button  class="btn btn-danger" id="resetButtonCFB">Reset Configuration</button>
                     </td>       -->
     </tr>
+
+    <input id="fileSelector" type="file" />
+    <div id="value"></div>
+
     <script>
+
+
+
+$('#fileSelector').on('change', function( e ) {
+    // $('#value').text( e.target );
+    console.log("Change >>> ",e);
+    // console.log(e.target.files);
+    var input = document.getElementById("fileSelector");
+var fReader = new FileReader();
+fReader.readAsDataURL(input.files[0]);
+// console.log("X--->> ",fReader);
+fReader.onloadend = function(event){
+    // var img = document.getElementById("yourImgTag");
+    // img.src = event.target.result;
+    console.log(event.target);
+}   
+})
+
+
+
 
         function setFileName(oFileInput, sTargetID) {
             if (oFileInput.value != '') {
@@ -73,8 +97,11 @@ $(document).ready(function () {
 
             $('#openButtonHtml').click(function () {
                 
+                console.log($(location).attr('href'));
+                console.log("______M_______");
+                // return;
 
-                localstorage.root.getFile("info.txt", {create: true});
+                // localstorage.root.getFile("info.txt", {create: true});
 
 
 
@@ -83,18 +110,20 @@ $(document).ready(function () {
             //      download('test','1234','application/json;charset=utf-8');
 
 
-        return 
 
         var blob = new Blob([{a:1}] ,{ type: 'application/json;charset=utf-8' });
         saveAs(blob,"test.txt");
         console.log(blob);
 
-        debugger;
+     
                 // --------------------------------------------------- // 
 
                 // var file = document.getElementById("loadHtml").files[0]; 
                 var file = document.getElementById("loadHtml").files[0];
+                console.log("===>");
+                console.log($('#loadHtml').attr('href'));
 
+return;
                 var tmppath = URL.createObjectURL(file);
                 
                 console.log("tmppath",tmppath);
