@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title Promise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Promise</h1>
+    <script>
+        console.log("PROMISE!!! 12324");
+        function showMessage(callback){
+            // console.log("Hello 1234567.");
+            return new Promise(function(fulfill,reject){
+
+                console.log("sdfsdfsdfsdfsdfsdfsdfsdfsdf")
+                fulfill("55555555");
+            });
+        }
+
+        function sayGoodbye(callback){
+            return new Promise(function(fulfill,reject){
+console.log("gooood bye");
+fulfill("6666666666");
+});
+        } 
+
+
+showMessage().then(sayGoodbye).then(function(){
+    console.log("END");
+});
+
+console.log("Happy0");
+console.log("Happy1");
+console.log("Happy2");
+console.log("Happy3");
+console.log("Happy4");
+
+        // showMessage();
+    </script>
+</body>
+</html>

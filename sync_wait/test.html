@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log("Start page");
+    function sayHello(){
+
+        return "Hello";
+
+    }
+
+    function delayHello(){
+
+        return new Promise((resolve,reject) =>{
+
+                setTimeout(()=>{
+                    resolve('Delay Hello');
+                },3000);
+        });
+    }
+
+
+    function main(){
+
+        let a = sayHello();
+        // let b = delayHello();
+        delayHello().then((value)=>{
+            let b = value;
+            console.log(b);
+        })
+        console.log(a);
+        // console.log("outer: ",b);
+    }
+
+    async function longtimeHello(){
+
+        await setTimeout(() => {
+            
+        }, 3000);
+
+        return "long time hello world"
+    }
+
+
+    async function main2(){
+
+        let a = sayHello();
+        let b = await delayHello();
+        let c = await longtimeHello();
+
+        console.log(c);
+        console.log(b); //console b then console a  
+        console.log("Text ",c);
+        console.log(a);
+        console.log("TEST");
+
+    
+
+    }
+
+
+    async function parallelRun(){
+
+        let a = await Promise.all([delayHello(),longtimeHello(),sayHello()]);
+        console.log("***Open***");
+        console.log(a);
+        console.log("***Close***");
+    }
+
+    // run
+    // main();
+    main2();
+    console.log("under main2 function");
+    parallelRun();
+</script>
+
+<!-- credit: https://medium.com/pnpsolution/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-async-await-%E0%B9%83%E0%B8%99-node-js-b11d3f51689e -->
+</html>
