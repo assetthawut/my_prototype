@@ -1,0 +1,48 @@
+<html>
+
+<body>
+
+    <a href="#">Hidden link</a>
+
+    <script>
+
+        var debug = { hello: "world", name: "David Beckham" };
+        var blob = new Blob([JSON.stringify(debug, null, 2)], { type: 'application/json' });
+        console.log(blob);
+
+        var typedArray = ['sdf', 'sdfsdf', 'sdfsdfsdf'];
+        var blob = new Blob([JSON.stringify(debug, null, 2)], { type: 'application/octet-stream' }); // pass a useful mime type here
+        var url = URL.createObjectURL(blob);
+
+
+        console.log(url);
+        console.log("Hello");
+        // window.location = url;
+
+        var saveData = (function () {
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            return function (data, fileName) {
+                var json = JSON.stringify(data),
+                    blob = new Blob(['<html><h1>123456789</h1><a href="#">Hidden link</a></html>'], { type: "octet/stream" }),
+                    url = window.URL.createObjectURL(blob);
+                a.href = url;
+                a.download = fileName;
+                a.click();
+                window.URL.revokeObjectURL(url);
+            };
+        }());
+
+        var data = { x: 42, s: "hello, world", d: new Date() },
+            fileName = "my-download.html";
+        saveData(data, fileName);
+
+
+
+    </script>
+
+
+</body>
+
+</html>

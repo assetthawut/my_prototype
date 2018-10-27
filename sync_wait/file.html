@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>FILE TEST</title>
+    <script src="html.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    sdfsdfsdfsdfsdfsdfsdfsdf
+    <input type="file" id="myFile">
+    <p>Click the "Try it" button to disable the file upload button.</p>
+    <button onclick="myFunction()">Try it</button>
+
+    <iframe src="normal.html" id="iframe_id" style="display: none;"></iframe>
+
+    <script>
+
+
+        // function readTextFile(file)
+        // {
+        //     var rawFile = new XMLHttpRequest();
+        //     rawFile.open("GET", file, false);
+        //     rawFile.onreadystatechange = function ()
+        //     {
+        //         if(rawFile.readyState === 4)
+        //         {
+        //             if(rawFile.status === 200 || rawFile.status == 0)
+        //             {
+        //                 var allText = rawFile.responseText;
+        //                 alert(allText);
+        //             }
+        //         }
+        //     }
+        //     rawFile.send(null);
+        // }
+
+        // readTextFile("file:///C:/Users/setthawut/Downloads/test%20%20edit.txt");
+        
+        
+        
+        function myFunction() {
+            
+            // console.log(document.getElementById("myFile"));
+            // var x = document.getElementById("myFile");
+            // console.log("x", x.files);
+            
+            // var x = document.getElementById("myFile");
+            // x.disabled = true;
+            // console.log("x", x.files[0]);
+
+            // reader = new FileReader();
+            // reader.readAsText(x.files[0], "UTF-8");
+            // console.log("==>", reader);
+            // reader.onload = function (evt) {
+            //     /*
+            //         get data form file and send to cutTemplateString for cut string (varible name and semicolon).
+            //         evt.target.result
+            //     */
+            //     console.log("------> ", evt.target.result);
+          
+
+            //     var saveData = (function () {
+            //         var a = document.createElement("a");
+            //         document.body.appendChild(a);
+            //         a.style = "display: none";
+            //         return function (data, fileName) {
+            //             var json = JSON.stringify(data),
+            //                 blob = new Blob([data], { type: "text/plain" }),
+            //                 url = window.URL.createObjectURL(blob);
+            //             a.href = url;
+            //             a.download = fileName;
+            //             a.click();
+            //             window.URL.revokeObjectURL(url);
+            //         };
+            //     }());
+
+            //     var data = { x: 42, s: "hello, world", d: new Date() },
+            //         fileName = "my-download.html";
+            //     saveData(evt.target.result, fileName);
+            // }
+
+
+
+            // ***************************************
+           
+            // console.log("ready!");
+            // // var iframeData = document.getElementById("iframe_id").contentWindow.document;
+            // // console.log(iframeData);
+            // frameD = $('#iframe_id');
+            // // console.log("---> ",$("#iframe_id").contents().html());
+            // // console.log(frameD);
+            // iframeAllTag = frameD[0];
+            // // console.log("###",frameD[0]);
+            // console.log('===>',iframeAllTag);
+           
+            // alert(frameD.prevObject[0].outerHTML);
+
+
+            // var iframe = document.getElementById('iframe_id').contentWindow.document.documentElement.outerHTML;  // this can use 
+            // console.log(iframe);
+
+
+            
+            // console.log($("#iframe_id").html($('#myIframe').contents().find('body').html()));
+
+            var iframe  = document.getElementById("iframe_id");
+            ff = iframe.contentWindow;
+            console.log("iframe ==> ",iframe);
+
+            console.log(document.getElementsByTagName('html')[0]);
+            console.log(document.getElementById('document'));
+
+            // var elmnt   = iframe.contentWindow.document;  
+            // console.log("====> ",elmnt);
+     
+    // $("#iframe_id").bind("load",function(){
+    //     $(this).contents().html();
+    //     console.log($(this).contents().html());
+    //     console.log("sdfsdfsdfsdfsdf");
+    // });
+            
+            // console.log($('#iframe_id').contents().prevObject[0]);
+        }  
+
+
+
+
+        
+    </script>
+</body>
+
+</html>
