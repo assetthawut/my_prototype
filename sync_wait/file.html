@@ -13,6 +13,7 @@
     <button onclick="myFunction()">Try it</button>
 
     <iframe src="normal.html" id="iframe_id" style="display: none;"></iframe>
+    <div class="inner"></div>    
 
     <script>
 
@@ -42,43 +43,47 @@
         function myFunction() {
             
             // console.log(document.getElementById("myFile"));
-            // var x = document.getElementById("myFile");
+            //  var x = document.getElementById("myFile");
             // console.log("x", x.files);
             
-            // var x = document.getElementById("myFile");
-            // x.disabled = true;
+             var x = document.getElementById("myFile");
+            //  x.disabled = true;
             // console.log("x", x.files[0]);
 
-            // reader = new FileReader();
-            // reader.readAsText(x.files[0], "UTF-8");
+             reader = new FileReader();
+             reader.readAsText(x.files[0], "UTF-8");
             // console.log("==>", reader);
-            // reader.onload = function (evt) {
-            //     /*
-            //         get data form file and send to cutTemplateString for cut string (varible name and semicolon).
-            //         evt.target.result
-            //     */
-            //     console.log("------> ", evt.target.result);
-          
+             reader.onload = function (evt) {
+                /*
+                    get data form file and send to cutTemplateString for cut string (varible name and semicolon).
+                    evt.target.result
+                */
+                console.log("------> ", evt.target.result);
+                openData = evt.target.result
 
-            //     var saveData = (function () {
-            //         var a = document.createElement("a");
-            //         document.body.appendChild(a);
-            //         a.style = "display: none";
-            //         return function (data, fileName) {
-            //             var json = JSON.stringify(data),
-            //                 blob = new Blob([data], { type: "text/plain" }),
-            //                 url = window.URL.createObjectURL(blob);
-            //             a.href = url;
-            //             a.download = fileName;
-            //             a.click();
-            //             window.URL.revokeObjectURL(url);
-            //         };
-            //     }());
+                $('[content-area=html]', $('#iframe_id').contents()).append( openData );
+                inIframe = $('#iframe_id').contents().find("html").html();
+                console.log(":::=>",inIframe);
+                debugger;
+                var saveData = (function () {
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    return function (data, fileName) {
+                        var json = JSON.stringify(data),
+                            blob = new Blob([data], { type: "text/plain" }),
+                            url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = fileName;
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    };
+                }());
 
-            //     var data = { x: 42, s: "hello, world", d: new Date() },
-            //         fileName = "my-download.html";
-            //     saveData(evt.target.result, fileName);
-            // }
+                var data = { x: 42, s: "hello, world", d: new Date() },
+                    fileName = "my-download.html";
+                saveData(inIframe, fileName);
+            }
 
 
 
@@ -104,12 +109,31 @@
             
             // console.log($("#iframe_id").html($('#myIframe').contents().find('body').html()));
 
-            var iframe  = document.getElementById("iframe_id");
-            ff = iframe.contentWindow;
-            console.log("iframe ==> ",iframe);
+            // var iframe  = document.getElementById("iframe_id");
+            // ff = iframe.contentWindow;
+            // console.log("iframe ==> ",iframe);
 
-            console.log(document.getElementsByTagName('html')[0]);
-            console.log(document.getElementById('document'));
+            // console.log(document.getElementsByTagName('html')[0]);
+            // console.log(document.getElementById('document'));
+        //     iframelement = $("#iframe_id").contents().prevObject[0] ;
+        // //    console.log("==> ",$("#iframe_id").contents().prevObject[0]);
+        //     console.log( $.parseHTML(iframelement[0]));
+        //     console.log("iframelement",iframelement);
+        //     console.log(JSON.stringify(iframelement));
+
+        //         ss =  $("#iframe_id").toString();
+
+        //         // $( ".inner" ).append( "<p>Test</p>" );
+        //         $( ".inner" ).append("iframelement");
+
+                // show = "<pre>"+iframe+"</pre>";
+              
+                // $( ".inner" ).append(show);
+
+                // console.log(JSON.stringify(show));
+
+
+            // alert(String(iframelement));
 
             // var elmnt   = iframe.contentWindow.document;  
             // console.log("====> ",elmnt);
@@ -121,6 +145,41 @@
     // });
             
             // console.log($('#iframe_id').contents().prevObject[0]);
+        
+            // testFrame   = $('#iframe_id');
+            // content     = $('#iframe_id').html();
+            // console.log("show",content);
+            
+
+// var $html = $('<iframe width="854" height="480" src="file:///C:/Users/setthawut/Documents/GitHub/my_prototype/sync_wait/file.html" frameborder="0" allowfullscreen></iframe>');    
+// console.log("$html",$html);
+// var str = $html.prop('outerHTML');
+
+// console.log("sdfsdfsdf =>> ",document.getElementById('iframe_id').contentWindow.document);
+// iHtmlhead = document.getElementById('iframe_id').contentWindow.document.head.innerHTML;
+// iHtmlbody = document.getElementById('iframe_id').contentWindow.document.body.innerHTML;
+
+// console.log(iHtmlhead.toString());
+// console.log("----> ",iHtmlbody.toString());
+/*
+    allhtml = $('#iframe_id').contents().find("html").html();
+    console.log("=>>>>>>>>>>>>>>>>",allhtml);
+    console.log("=>>>>>>>>>>>>>>>>",typeof allhtml); 
+*/
+// outline 
+
+
+
+//  $('#supersett', $('#iframe_id').contents()).append( "<strong>Hello</strong>" ); // ok good 
+// $('[content-area=html]', $('#iframe_id').contents()).append( openData ); // ok good 
+
+// console.log($('#iframe_id').contents().find("#supersett")[0].innerHTML);
+
+
+// console.log( $('#iframe_id').contents().find("body").html());
+
+
+
         }  
 
 
