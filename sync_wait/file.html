@@ -12,7 +12,7 @@
     <p>Click the "Try it" button to disable the file upload button.</p>
     <button onclick="myFunction()">Try it</button>
 
-    <iframe src="normal.html" id="iframe_id" style="display: none;"></iframe>
+    <iframe src="file:///D:/git%20repo/rio-wap-fbd/stat/v1/src/forms/editor/v1/pdf2htmlEX/src/sample.html" id="iframe_id"></iframe>
     <div class="inner"></div>    
 
     <script>
@@ -60,8 +60,9 @@
                 */
                 console.log("------> ", evt.target.result);
                 openData = evt.target.result
-
+                $('.loader-wrapper', $('#iframe_id').contents()).remove();                
                 $('[content-area=html]', $('#iframe_id').contents()).append( openData );
+                // $('#iframe_id')
                 inIframe = $('#iframe_id').contents().find("html").html();
                 console.log(":::=>",inIframe);
                 debugger;
