@@ -81,7 +81,9 @@
          function add() {
             var request = db.transaction(["employee"], "readwrite")
             .objectStore("employee")
-            .add({ id: "00-03", name: "Kenny", age: 19, email: "kenny@planet.org" });
+            .add({ id: "00-03", name: "Kenny", age: 19, email: "kenny@planet.org" })
+
+
             
             request.onsuccess = function(event) {
                alert("Kenny has been added to your database.");

@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <h1>TEST SESSION</h1>
+        <script>
+            $(window).ready(function(){
+                    //Get saved session data
+                    var persistedObject = null;
+
+                    try{
+                        persistedObject = JSON.parse(window.name);
+                    }catch(e){}
+                });
+
+                function updateSessionStorage(){
+                    var objectToPersist = {};
+
+                    //Get some data to persist
+                    objectToPersist.value1 = "some data";
+
+                    //Save the data in the session storage
+                    window.name = JSON.stringify(objectToPersist);
+                    console.log("#### ==> ");
+                }
+
+                  console.log("####",window.name);
+        </script>
+    </body>
+</html>

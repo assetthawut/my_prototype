@@ -1,0 +1,260 @@
+<html>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/formiojs@latest/dist/formio.full.min.css'>
+<script src='https://unpkg.com/formiojs@latest/dist/formio.full.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    /**
+     * Get the base component class by referencing Formio.Components.components map.
+     */
+    var BaseComponent = Formio.Components.components.base;
+
+    /**
+     * Create a new CheckMatrixComponent "class" using ES5 class inheritance notation. 
+     * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
+     * 
+     * Here we will derive from the base component which all Form.io form components derive from.
+     *
+     * @param component
+     * @param options
+     * @param data
+     * @constructor
+     */
+
+     sampleComp = {};
+    //  function sampleComp(){
+
+
+    //     return;
+    //  }
+    function CheckMatrixComponent(component, options, data) {
+        
+        // console.log("component",component);
+        // console.log("options",options);
+        // console.log("data",data);
+
+        // console.log("# ",BaseComponent);
+
+        BaseComponent.prototype.constructor.call(this, component, options, data);
+    }
+
+    // Perform typical ES5 inheritance
+    CheckMatrixComponent.prototype = Object.create(BaseComponent.prototype);
+    console.log(":CheckMatrixComponent: ",CheckMatrixComponent);
+    console.log(":BaseComponent: ",BaseComponent.schema({joe:999}));
+    
+    CheckMatrixComponent.prototype.constructor = CheckMatrixComponent;
+
+    /**
+     * Define what the default JSON schema for this component is. We will derive from the BaseComponent
+     * schema and provide our overrides to that.
+     * @return {*}
+     */
+    CheckMatrixComponent.schema = function () {
+        return BaseComponent.schema({
+            type: 'checkmatrix',
+            numRows: 3,
+            numCols: 3
+        });
+    };
+
+    /**
+     * Register this component to the Form Builder by providing the "builderInfo" object.
+     * 
+     * @type {{title: string, group: string, icon: string, weight: number, documentation: string, schema: *}}
+     */
+
+    console.log("##: ",CheckMatrixComponent.schema());
+
+
+    CheckMatrixComponent.builderInfo = {
+        title: 'Check Matrix',
+        group: 'basic',
+        icon: 'fa fa-table',
+        weight: 70,
+        documentation: 'http://help.form.io/userguide/#table',
+        schema: CheckMatrixComponent.schema()
+
+    };
+
+
+    
+    sampleComp.builderInfo = {
+        title: 'SampleComp',
+        group: 'basic',
+        icon: 'fa fa-table',
+        weight: 70,
+        documentation: 'http://help.form.io/userguide/#table',
+        schema:        {
+      "label": "Columns",
+      "columns": [
+        {
+          "components": [
+            {
+              "label": "Text Field",
+              "allowMultipleMasks": false,
+              "showWordCount": false,
+              "showCharCount": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "textfield",
+              "input": true,
+              "key": "textField2",
+              "widget": {
+                "type": ""
+              }
+            },
+            {
+              "label": "Number",
+              "mask": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "number",
+              "input": true,
+              "key": "number"
+            },
+            {
+              "label": "Checkbox",
+              "shortcut": "",
+              "mask": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "checkbox",
+              "input": true,
+              "key": "checkbox"
+            }
+          ],
+          "width": 6,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "type": "column",
+          "hideOnChildrenHidden": false,
+          "input": true,
+          "key": "",
+          "tableView": true,
+          "label": ""
+        },
+        {
+          "components": [
+            {
+              "label": "Text Field",
+              "allowMultipleMasks": false,
+              "showWordCount": false,
+              "showCharCount": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "textfield",
+              "input": true,
+              "key": "textField3",
+              "widget": {
+                "type": ""
+              }
+            },
+            {
+              "label": "Number",
+              "mask": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "number",
+              "input": true,
+              "key": "number2"
+            },
+            {
+              "label": "Checkbox",
+              "shortcut": "",
+              "mask": false,
+              "tableView": true,
+              "alwaysEnabled": false,
+              "type": "checkbox",
+              "input": true,
+              "key": "checkbox2"
+            }
+          ],
+          "width": 6,
+          "offset": 0,
+          "push": 0,
+          "pull": 0,
+          "type": "column",
+          "hideOnChildrenHidden": false,
+          "input": true,
+          "key": "",
+          "tableView": true,
+          "label": ""
+        }
+      ],
+      "mask": false,
+      "tableView": false,
+      "alwaysEnabled": false,
+      "type": "columns",
+      "input": false,
+      "key": "columns"
+    }
+
+    };
+
+    // Use the table component edit form.
+    CheckMatrixComponent.editForm = Formio.Components.components.table.editForm;
+    
+    sampleComp.editForm = Formio.Components.components.textfield.editForm;
+
+    // Register the component to the Formio.Components registry.
+    Formio.Components.addComponent('checkmatrix', CheckMatrixComponent);
+    Formio.Components.addComponent('sample', sampleComp);
+
+
+
+
+
+</script>
+
+<div class="card card-body bg-light">
+    <div id="builder"></div>
+</div>
+<h4>Rendered Form</h4>
+<div class="card card-body bg-light">
+    <div id="formio"></div>
+</div>
+<h4>Submission Data</h4>
+<div class="card card-body bg-light jsonviewer">
+    <pre id="json"></pre>
+</div>
+<script type="text/javascript">
+    Formio.builder(document.getElementById('builder'), {}, {
+        builder: {
+            basic: false,
+            advanced: false,
+            data: false,
+            layout: false,
+            customBasic: {
+                title: 'Basic Components',
+                default: true,
+                weight: 0,
+                components: {
+                    checkmatrix: true,
+                    textfield: true,
+                    checkbox: true,
+                    sample: true
+                }
+            }
+        }
+    }).then(function (builder) {
+        Formio.createForm(document.getElementById('formio'), {}).then(function (instance) {
+            var json = document.getElementById('json');
+            instance.on('change', function () {
+                json.innerHTML = '';
+                json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
+            });
+            builder.on('change', function (schema) {
+                if (schema.components) {
+                     console.log("schema x",schema);
+                     instance.form = schema;
+                     
+                }
+            });
+        });
+    });
+</script>
+
+</html>
