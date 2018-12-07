@@ -30,19 +30,13 @@
     //  }
     function CheckMatrixComponent(component, options, data) {
         
-        // console.log("component",component);
-        // console.log("options",options);
-        // console.log("data",data);
-
-        // console.log("# ",BaseComponent);
 
         BaseComponent.prototype.constructor.call(this, component, options, data);
     }
 
     // Perform typical ES5 inheritance
     CheckMatrixComponent.prototype = Object.create(BaseComponent.prototype);
-    console.log(":CheckMatrixComponent: ",CheckMatrixComponent);
-    console.log(":BaseComponent: ",BaseComponent.schema({joe:999}));
+
     
     CheckMatrixComponent.prototype.constructor = CheckMatrixComponent;
 
@@ -65,7 +59,6 @@
      * @type {{title: string, group: string, icon: string, weight: number, documentation: string, schema: *}}
      */
 
-    console.log("##: ",CheckMatrixComponent.schema());
 
 
     CheckMatrixComponent.builderInfo = {
@@ -248,7 +241,7 @@
             });
             builder.on('change', function (schema) {
                 if (schema.components) {
-                     console.log("schema x",schema);
+                     
                      instance.form = schema;
                      
                 }
