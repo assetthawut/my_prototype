@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <script src="js/d3.js"></script>
+</head>
+
+<body>
+
+        <body>
+                <p></p>
+                <p></p>
+                <p></p>
+                <svg width = "300" height = "300">
+                        <line x1 = "100" y1 = "100" 
+                           x2 = "200" y2 = "200" style = "stroke:rgb(255,0,0);
+                           stroke-width:2"/>
+                </svg>
+                <script>
+                   var data = [1, 2, 3];
+                   var paragraph = d3.select("body")
+                   .selectAll("p")
+                   .data(data)
+                   .text(function (d, i) {
+                      console.log("d: " + d);
+                      console.log("i: " + i);
+                      console.log("this: " + this);
+                      return "The index is " + i + " and the data is " + d;
+                   });
+                </script>
+             </body>
+
+</html>
