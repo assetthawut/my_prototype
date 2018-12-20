@@ -1,0 +1,87 @@
+<html>
+
+<body>
+    <h1>Learn Async Await:: </h1>
+    <script>
+        //     function resolveAfter2Seconds(x) {
+        //         return new Promise(resolve => {
+        //             setTimeout(() => {
+        //                 resolve(x);
+        //             }, 2000);
+        //         });
+        //     }
+
+        //     async function f1() {
+
+        //         console.log("Before");
+        //         var x = await resolveAfter2Seconds(10);
+        //         console.log(x); // 10
+        //         console.log("Hi");
+        //     }
+
+
+        //    async function say(){
+
+        //             console.log("Peek");
+        //     await   console.log("Hi ZZZZ");
+        //             console.log("Peek after");
+
+
+        //     }
+
+
+        //     f1();
+        //     say();
+
+        // function displayFunction(num) {
+        //     return new Promise(resolve => {
+        //         setTimeout(() => {
+        //             resolve(num);
+        //         }, 5000);
+        //     });
+        // }
+
+        // async function add2(num) {
+        //     const x = displayFunction(2);
+        //     const y = displayFunction(2);
+        //     return num * await x * await y;
+        // }
+
+
+        // add2(10).then(result => {
+        //     document.write("Multiplication Result (after 5 seconds): " + result);
+        // });
+
+
+
+
+        a = new Promise(resolve => {
+            setTimeout(() => {
+                resolve(100);
+            }, 1000);
+        });
+
+
+        function test(){
+
+            console.log("TEST RUN:");
+            return a;
+        }
+
+        async function yo(){
+
+            var x = await test();
+
+            console.log("XXX ",x);
+            console.log("After XXX");
+            
+        }
+
+        yo();
+        console.log("After yo() ");
+
+
+    </script>
+</body>
+
+</html>
