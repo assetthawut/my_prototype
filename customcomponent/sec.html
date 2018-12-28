@@ -22,15 +22,15 @@
 
 <body>
     <div class="container">
-        <h3>Create Custom Component Star</h3>
+        <h3>Create Custom Component </h3>
         <div id="builder"></div>
         <div id="formio"></div>
-        <div id="json"></div>
+        <!-- <div id="json"></div>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span> -->
     </div>
     <script type="text/javascript">
 
@@ -91,7 +91,7 @@
         */
 
         aCom.builderInfo = {
-            title: 'Rating',
+            title: 'Example',
             group: 'basic',
             icon: 'fa fa-star-o',
             weight: 70,
@@ -126,7 +126,7 @@
                         
                     });
 
-                    ilist.textContent = "sdfsdfsdf";
+                    ilist.textContent = "Example";
                     this.addInput(ilist);
                     this.element.appendChild(ilist);
                 }
@@ -460,7 +460,7 @@
              Component edit form
         */
 
-        aCom.editForm = Formio.Components.components.table.editForm;
+        aCom.editForm = Formio.Components.components.form.editForm;
 
 
         /*
@@ -497,7 +497,7 @@
 
                 instance.on('change', function () {
                     json.innerHTML = '';
-                    json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
+                    // json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
                 });
 
                 instance.on('submit', function (evt) {

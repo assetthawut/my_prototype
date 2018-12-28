@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
+    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
+
+</head>
+
+<body>
+    <p>Select value should be cleared after 2s.</p>
+    <div id="form"></div>
+
+    <script>
+        Formio.createForm(
+            document.querySelector('#form'),
+            {
+                components: [
+                    {
+                        'conditional': {
+                            'eq': '',
+                            'when': null,
+                            'show': ''
+                        },
+                        'tags': [],
+                        'type': 'select',
+                        'validate': {
+                            'required': false
+                        },
+                        'persistent': true,
+                        'unique': false,
+                        'protected': false,
+                        'multiple': false,
+                        'template': '<span>{{ item.label }}</span>',
+                        'authenticate': false,
+                        'filter': '',
+                        'refreshOn': '',
+                        'defaultValue': '',
+                        'valueProperty': '',
+                        'dataSrc': 'values',
+                        'data': {
+                            'custom': '',
+                            'resource': '',
+                            'url': '',
+                            'json': '',
+                            'values': [
+                                {
+                                    'label': 'Red',
+                                    'value': 'red'
+                                },
+                                {
+                                    'label': 'Blue',
+                                    'value': 'blue'
+                                },
+                                {
+                                    'label': 'Green',
+                                    'value': 'green'
+                                },
+                                {
+                                    'label': 'Yellow',
+                                    'value': 'yellow'
+                                },
+                                {
+                                    'label': 'Purple',
+                                    'value': 'purple'
+                                },
+                                {
+                                    'label': 'Orange',
+                                    'value': 'orange'
+                                },
+                                {
+                                    'label': 'Black',
+                                    'value': 'black'
+                                }
+                            ]
+                        },
+                        'placeholder': 'Enter your favorite color',
+                        'key': 'favoriteColor',
+                        'label': 'Favorite Color',
+                        'tableView': true,
+                        'input': true
+                    }
+                ]
+            }
+        ).then(form => {
+            const s = form.components[0];
+
+            s.setValue('blue');
+            setTimeout(() => {
+                s.setValue('');
+            }, 2000)
+        });
+
+    </script>
+</body>
+
+</html>
